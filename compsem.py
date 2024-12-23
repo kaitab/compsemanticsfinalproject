@@ -210,8 +210,10 @@ pos_dict = {"NOUN": Noun, "PRON" : Pron, "ADP": Prep, "AUX": Aux, "VERB" : Verb,
 
 lambda_parse = []
 for index,tag in enumerate(tags):
-    if tag != "SPACE":
+    if tag in pos_dict:
         lambda_parse.append(str(pos_dict[tag](doc_list[index])))
+    elif tag != "SPACE":
+        lambda_parse.append(str(Noun(doc_list[index])))
 
 print(" ".join(lambda_parse))
 
